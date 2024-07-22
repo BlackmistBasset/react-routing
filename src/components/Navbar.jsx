@@ -1,19 +1,15 @@
-import { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import { IoIosNotifications } from "react-icons/io";
+
+import { Button } from "@mui/material";
+
 import { Link } from "react-router-dom";
 
-import Badge from "@mui/material/Badge";
-import { NotificationsContainer } from "./NotificationsContainer";
-import { NotificationsContext } from "../context/NotificationsContext";
-import { Typography } from "@mui/material";
-
-export const Navbar = () => {
-  const { notificationsCounter } = useContext(NotificationsContext);
-  const [isOpen, setIsOpen] = useState(false);
+export const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
     <>
@@ -21,24 +17,25 @@ export const Navbar = () => {
         <AppBar position="static">
           <Toolbar>
             <Box sx={{ flexGrow: 1 }} />
-            <Typography>
-              <Link to="/contact">Contact</Link>
-            </Typography>
-            <Box sx={{ display: "flex" }}>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-                onClick={() => setIsOpen(!isOpen)}
+            <Box sx={{ display: "flex", gap: "20px", alignItems: "center" }}>
+              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+                Home
+              </Link>
+              <Link
+                to="/contact"
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <Badge badgeContent={notificationsCounter} color="error">
-                  <IoIosNotifications />
-                </Badge>
-              </IconButton>
+                Contacto
+              </Link>
+
+              <Button
+                sx={{ color: "white", border: "1px solid white" }}
+                onClick={handleLogin}
+              >
+                Iniciar Sesión
+              </Button>
             </Box>
           </Toolbar>
-
-          <NotificationsContainer isOpen={isOpen} />
         </AppBar>
       </Box>
     </>

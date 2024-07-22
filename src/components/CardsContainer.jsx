@@ -49,7 +49,7 @@ export const CardsContainer = () => {
         }}
       />
       {personajes?.map(({ name, image, id }) => {
-        return <CharacterCard name={name} img={image} key={id} />;
+        return <CharacterCard name={name} img={image} key={id} id={id} />;
       })}
     </Container>
   );

@@ -1,21 +1,22 @@
-import { Navbar } from "./components/Navbar";
+import { useState } from "react";
 
-import { CardsContainer } from "./components/CardsContainer";
+import { Header } from "./layout/Header";
 
-import { Route, Routes } from "react-router";
-
-import { Contact } from "./pages/Contact";
-import { NotFound } from "./pages/NotFound";
+import { Main } from "./layout/Main";
+import { Box } from "@mui/material";
+import { Footer } from "./layout/Footer";
+import { Login } from "./pages/Login";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/" element={<CardsContainer />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Main isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
+      <Login setIsLoggedIn={setIsLoggedIn} />
+      <Footer />
+      <Box />
     </>
   );
 }
